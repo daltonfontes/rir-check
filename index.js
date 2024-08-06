@@ -12,7 +12,7 @@ const success = chalk.green;
 const warning = chalk.yellow;
 const error = chalk.red;
 
-async function verificarDisponibilidade() {
+async function checkAvailability() {
   try {
     const resposta = await axios.get(URL);
     if (resposta.status === 200) {
@@ -42,7 +42,7 @@ async function main() {
   const hour = moment().tz('America/Sao_Paulo').format('HH:mm:ss');
 
   while (moment().tz('America/Sao_Paulo').isBefore(TIME_BOX)) {
-    if (await verificarDisponibilidade()) {
+    if (await checkAvailability()) {
       console.log(success("Ingressos disponíveis! Acesse o site para comprar: ") + chalk.underline.blue(URL));
       break;
     } else {
